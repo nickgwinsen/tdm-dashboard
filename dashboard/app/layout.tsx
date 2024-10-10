@@ -6,6 +6,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import type { Navigation } from '@toolpad/core';
 
 import theme from '../theme';
+import { SpeedDialIcon } from '@mui/material';
 
 const NAVIGATION: Navigation = [
   {
@@ -21,6 +22,11 @@ const NAVIGATION: Navigation = [
     segment: 'orders',
     title: 'Orders',
     icon: <ShoppingCartIcon />,
+  },
+  {
+    segment: 'categoryRatings',
+    title: 'Ratings By Category',
+    icon: <SpeedDialIcon />,
   },
 ];
 
