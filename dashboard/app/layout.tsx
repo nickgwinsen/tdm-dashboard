@@ -22,6 +22,11 @@ const NAVIGATION: Navigation = [
     title: "Districts",
     icon: <LocalConvenienceStoreIcon />,
   },
+  {
+    segment: "common-words",
+    title: "Most Common Words",
+    icon: <LocalConvenienceStoreIcon />,
+  },
 ];
 
 const BRANDING = {
