@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -16,6 +15,8 @@ function createData(word: string, numOfAppearances: number) {
   };
 }
 
+// later on will want to get data from api with fetch and then convert
+// to array
 const rows = [
   createData("good", 53435),
   createData("food", 52033),
@@ -26,30 +27,28 @@ const rows = [
 
 export default function CommonWords() {
   return (
-    <div>
-      <TableContainer component={Paper}>
-        <Table aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Word</TableCell>
-              <TableCell>Appearances</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((r) => {
-              return (
-                <TableRow
-                  key={r.word}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell>{r.word}</TableCell>
-                  <TableCell>{r.numOfAppearances}</TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+    <TableContainer component={Paper}>
+      <Table aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Word</TableCell>
+            <TableCell>Appearances</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((r) => {
+            return (
+              <TableRow
+                key={r.word}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell>{r.word}</TableCell>
+                <TableCell>{r.numOfAppearances}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
