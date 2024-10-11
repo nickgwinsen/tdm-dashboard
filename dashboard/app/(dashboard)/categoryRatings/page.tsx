@@ -1,41 +1,50 @@
+'use client';
+
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridToolbarContainer } from '@mui/x-data-grid';
 
 // this does NOT get anything from the actual data, since it really isnt availlable and we dont have filtering
 
-const columns: GridColDef<(typeof rows)[number]>[] = [
-    { field: 'category', headerName: 'Category', width: 250},
-    { field: 'rating', headerName: "Star Rating", type: 'number'}
-];
+const columns: GridColDef<(typeof rows)[number]>[] = [];
 
-const rows = [
-    {id: 0, category: "Service", rating:1.5},
-    {id: 1, category: "Food", rating:2.0},
-    {id: 2, category: "Parking", rating:3.0},
-    {id: 3, category: "Bathrooms", rating:4.0},
-    {id: 4, category: "Truck Maintenance", rating:5.0},
-];
+const rows: any[] = [];
 
-/*
-for (int num in categories.length) 
+import categoriesJSON from "./categories.json";
+
+const categories = Object.entries(categoriesJSON);
+// get the categories json
+
+for (var num = 0; num < categories.length; num++) 
 {
-    string category = categories[num];
-    double rating = categories[num]; // somehow differentiate
+    var category = categories[num][0];
 
-    rows.add{id: num, category: category.title(), rating: rating};
-    columns.add({field: category, headerName: category.title()});
+    columns.push({field: category, headerName: category});
 }
-*/
+
+rows.push({id:0, "Food":1.0, "Service":2.0, "Cleanliness":5.0, "Parking":"N/A"});
+
+function DataGridTitle(){
+    return (
+        <GridToolbarContainer>
+            <Box style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <Typography variant="h5">Ratings By Category</Typography>
+            </Box>
+        </GridToolbarContainer>
+    );
+}
 
 export default function CategoryPage() {
     return (
-        <Box>
-            <Typography>Simple Example Grid:</Typography>
+        <Box style = {{width:"auto"}}>
+            <Typography>Grid now with auto columns:</Typography>
             <DataGrid 
+                slots = {{toolbar: DataGridTitle}}
                 rows = {rows}
                 columns = {columns}
+
+                hideFooter
             />
         </Box>
     );
