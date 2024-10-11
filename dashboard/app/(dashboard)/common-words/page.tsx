@@ -31,7 +31,7 @@ const rows = [
 export default function CommonWords() {
   return (
     <>
-      <Box sx={{ height: 400, width: "100%" }}>
+      <Box>
         <DataGrid
           rows={rows}
           columns={columns}
