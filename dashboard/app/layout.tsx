@@ -1,5 +1,6 @@
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import LocalConvenienceStoreIcon from "@mui/icons-material/LocalConvenienceStore";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import type { Navigation } from "@toolpad/core";
 import { AppProvider } from "@toolpad/core/nextjs";
@@ -21,6 +22,11 @@ const NAVIGATION: Navigation = [
         segment: "districts",
         title: "Districts",
         icon: <LocalConvenienceStoreIcon />,
+    },
+    {
+        segment: "star-ratings",
+        title: "Star Ratings",
+        icon: <StarBorderIcon />,
     },
 ];
 
