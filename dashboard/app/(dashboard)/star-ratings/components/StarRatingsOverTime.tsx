@@ -1,4 +1,5 @@
 "use client";
+import { Typography } from "@mui/material";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { axisClasses } from "@mui/x-charts/ChartsAxis";
 import { dataset, valueFormatter } from "./dataset/reviews";
@@ -21,6 +22,7 @@ const chartSetting = {
 export const StarRatingsOverTime = () => {
     return (
         <StarRatingsPaper>
+            <Typography variant={"h6"}>Star Ratings Over Time</Typography>
             <BarChart
                 height={400}
                 dataset={dataset}
