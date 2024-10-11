@@ -1,7 +1,8 @@
+import AbcIcon from "@mui/icons-material/Abc";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import LocalConvenienceStoreIcon from "@mui/icons-material/LocalConvenienceStore";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-import AbcIcon from "@mui/icons-material/Abc";
 import type { Navigation } from "@toolpad/core";
 import { AppProvider } from "@toolpad/core/nextjs";
 import * as React from "react";
@@ -27,6 +28,11 @@ const NAVIGATION: Navigation = [
         segment: "common-words",
         title: "Most Common Words",
         icon: <AbcIcon />,
+    },
+    {
+        segment: "star-ratings",
+        title: "Star Ratings",
+        icon: <StarBorderIcon />,
     },
 ];
 
