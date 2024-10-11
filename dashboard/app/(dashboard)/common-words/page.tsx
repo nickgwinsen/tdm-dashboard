@@ -14,7 +14,6 @@ function createData(word: string, appearances: number) {
 }
 
 const columns = [
-  { field: "id", headerName: "Id", width: 90 },
   { field: "word", headerName: "Word", width: 150 },
   { field: "appearances", headerName: "Appearances", flex: 1 },
 ];
@@ -28,8 +27,6 @@ const rows = [
   createData("place", 41471),
   createData("great", 40256),
 ];
-
-console.log(rows);
 
 export default function CommonWords() {
   return (
