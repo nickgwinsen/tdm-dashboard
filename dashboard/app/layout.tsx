@@ -9,45 +9,49 @@ import * as React from "react";
 import theme from "../theme";
 
 const NAVIGATION: Navigation = [
-  {
-    kind: "header",
-    title: "Main items",
-  },
-  {
-    segment: "",
-    title: "Dashboard",
-    icon: <DashboardIcon />,
-  },
-  {
-    segment: "districts",
-    title: "Districts",
-    icon: <LocalConvenienceStoreIcon />,
-  },
-  {
-    segment: "common-words",
-    title: "Most Common Words",
-    icon: <AbcIcon />,
-  },
+    {
+        kind: "header",
+        title: "Main items",
+    },
+    {
+        segment: "",
+        title: "Dashboard",
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: "districts",
+        title: "Districts",
+        icon: <LocalConvenienceStoreIcon />,
+    },
+    {
+        segment: "common-words",
+        title: "Most Common Words",
+        icon: <AbcIcon />,
+    },
 ];
 
 const BRANDING = {
-  title: "Travel Centers of America Dashboard",
+    title: "Travel Centers of America Dashboard",
 };
 
 export default function RootLayout(props: { children: React.ReactNode }) {
-  return (
-    <html lang="en" data-toolpad-color-scheme="light" suppressHydrationWarning>
-      <body>
-        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <AppProvider
-            navigation={NAVIGATION}
-            branding={BRANDING}
-            theme={theme}
-          >
-            {props.children}
-          </AppProvider>
-        </AppRouterCacheProvider>
-      </body>
-    </html>
-  );
+    return (
+        <html
+            lang="en"
+            data-toolpad-color-scheme="light"
+            suppressHydrationWarning
+        >
+            <body>
+                <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+                    <AppProvider
+                        navigation={NAVIGATION}
+                        branding={BRANDING}
+                        theme={theme}
+                    >
+                        {props.children}
+                    </AppProvider>
+                </AppRouterCacheProvider>
+            </body>
+        </html>
+    );
 }
