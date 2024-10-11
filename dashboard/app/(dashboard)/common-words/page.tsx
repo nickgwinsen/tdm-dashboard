@@ -16,7 +16,7 @@ function createData(word: string, appearances: number) {
 const columns = [
   { field: "id", headerName: "Id", width: 90 },
   { field: "word", headerName: "Word", width: 150 },
-  { field: "appearances", headerName: "Appearances", width: 150 },
+  { field: "appearances", headerName: "Appearances", flex: 1 },
 ];
 
 // later on will want to get data from api with fetch and then convert
@@ -34,7 +34,7 @@ console.log(rows);
 export default function CommonWords() {
   return (
     <>
-      <Box sx={{ height: 400, width: "100%" }}>
+      <Box sx={{ height: 400, width: 400 }}>
         <DataGrid
           rows={rows}
           columns={columns}
