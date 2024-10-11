@@ -1,19 +1,23 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
-import Paper from "@mui/material/Paper";
+import { DataGrid } from "@mui/x-data-grid";
+import { Box } from "@mui/material";
 
-function createData(word: string, numOfAppearances: number) {
-  return {
-    word,
-    numOfAppearances,
+var i = 0;
+
+function createData(word: string, appearances: number) {
+  const data = {
+    id: i,
+    word: word,
+    appearances: appearances,
   };
+  i += 1;
+  return data;
 }
+
+const columns = [
+  { field: "id", headerName: "Id", width: 90 },
+  { field: "word", headerName: "Word", width: 150 },
+  { field: "appearances", headerName: "Appearances", width: 150 },
+];
 
 // later on will want to get data from api with fetch and then convert
 // to array
@@ -25,30 +29,26 @@ const rows = [
   createData("great", 40256),
 ];
 
+console.log(rows);
+
 export default function CommonWords() {
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Word</TableCell>
-            <TableCell>Appearances</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((r) => {
-            return (
-              <TableRow
-                key={r.word}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell>{r.word}</TableCell>
-                <TableCell>{r.numOfAppearances}</TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <Box sx={{ height: 400, width: "100%" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 5,
+              },
+            },
+          }}
+          pageSizeOptions={[5]}
+          disableRowSelectionOnClick
+        />
+      </Box>
+    </>
   );
 }
