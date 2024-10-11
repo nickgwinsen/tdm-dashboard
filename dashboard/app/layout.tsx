@@ -1,3 +1,4 @@
+import AbcIcon from "@mui/icons-material/Abc";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import LocalConvenienceStoreIcon from "@mui/icons-material/LocalConvenienceStore";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
@@ -22,6 +23,11 @@ const NAVIGATION: Navigation = [
         segment: "districts",
         title: "Districts",
         icon: <LocalConvenienceStoreIcon />,
+    },
+    {
+        segment: "common-words",
+        title: "Most Common Words",
+        icon: <AbcIcon />,
     },
     {
         segment: "star-ratings",
