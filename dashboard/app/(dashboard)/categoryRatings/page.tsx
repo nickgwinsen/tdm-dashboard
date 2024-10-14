@@ -3,7 +3,9 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
-import { DataGrid, GridColDef, GridToolbarContainer } from '@mui/x-data-grid';
+import { GridColDef, GridToolbarContainer } from '@mui/x-data-grid';
+import Table from '../../components/Table';
+import tableStyles from '../../components/Table';
 
 // this does NOT get anything from the actual data, since it really isnt availlable and we dont have filtering
 
@@ -25,11 +27,12 @@ for (var num = 0; num < categories.length; num++)
 
 rows.push({id:0, "Food":1.0, "Service":2.0, "Cleanliness":5.0, "Parking":"N/A"});
 
+// previous title function, still here just incase, but should be removed soon
 function DataGridTitle(){
     return (
-        <GridToolbarContainer>
+        <GridToolbarContainer sx={{bgcolor:"primary.main"}}>
             <Box style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                <Typography variant="h5">Ratings By Category</Typography>
+                <Typography variant="h5" color='black'>Ratings By Category</Typography>
             </Box>
         </GridToolbarContainer>
     );
@@ -39,12 +42,19 @@ export default function CategoryPage() {
     return (
         <Box style = {{width:"auto"}}>
             <Typography>Grid now with auto columns:</Typography>
-            <DataGrid 
+            <Table
+                title='Ratings By Category'
+
                 slots = {{toolbar: DataGridTitle}}
+
                 rows = {rows}
                 columns = {columns}
 
                 hideFooter
+                autoSize
+                disableColumnMenu
+                disableColumnSorting
+                disableColumnResize
             />
         </Box>
     );
