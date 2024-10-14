@@ -26,10 +26,6 @@ const NAVIGATION: Navigation = [
     icon: <SpeedDialIcon />,
   },
   {
-      kind: "header",
-      title: "Main items",
-  },
-  {
       segment: "",
       title: "Dashboard",
       icon: <DashboardIcon />,
