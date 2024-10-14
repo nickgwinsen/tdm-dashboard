@@ -21,10 +21,10 @@ async def auth_login(user: models.UsersCreate):
 
 @router.post("/signup", response_model=models.Token)
 async def auth_signup(user: models.UsersCreate):
-    if await db.find_one(models.UserModel, models.UserModel.email == user.email):
+    if await db.find_one(models.UsersModel, models.UsersModel.email == user.email):
         raise HTTPException(status_code=400, detail="Email already exists")
 
-    user_to_add = models.UserModel(
+    user_to_add = models.UsersModel(
         email=user.email, hashed_password=crypt.hash_password(user.password)
     )
 
