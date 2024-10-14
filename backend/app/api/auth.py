@@ -9,7 +9,7 @@ router = APIRouter()
 from app.db.session import db
 
 
-@router.post("/login")
+@router.post("/login", response_model=models.Token)
 async def auth_login(user: schemas.UsersCreate):
     user_to_verify = await db.find_one(
         models.UsersModel, models.UsersModel.email == user.email
