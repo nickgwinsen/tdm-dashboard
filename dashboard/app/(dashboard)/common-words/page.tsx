@@ -41,7 +41,7 @@ export default function CommonWords() {
     return (
         <>
             <Table
-                title="Test title"
+                title="Most Common Words"
                 rows={rows}
                 columns={columns}
                 autoSize
