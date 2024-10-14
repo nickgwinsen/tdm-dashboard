@@ -1,15 +1,14 @@
 from typing import Optional, Annotated
-from pydantic import BeforeValidator, BaseModel, Field, EmailStr
-
+from pydantic import BeforeValidator, EmailStr
+from odmantic import Field, Model
 
 PyObjectId = Annotated[str, BeforeValidator(str)]
 
 
-class UserModel(BaseModel):
+class UserModel(Model):
     """
     A User record.
     """
 
-    id: Optional[PyObjectId] = Field(alias="_id", default=None)
     email: EmailStr = Field(...)
     hashed_password: str = Field(...)

@@ -7,10 +7,6 @@ from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr
 
-from alembic import command
-
-# db migrations
-from alembic.config import Config
 from app.api import auth
 
 log = logging.getLogger("uvicorn")

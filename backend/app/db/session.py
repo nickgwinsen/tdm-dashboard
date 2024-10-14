@@ -1,11 +1,12 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 from app.config.vars import variables
+from odmantic import AIOEngine
+
+uri = variables.MONGO_URI
 
 
-uri = variables.DB_STRING
 
+client = AsyncIOMotorClient(uri)
 
-async def init_database():
-    client = AsyncIOMotorClient(uri)
-    db = client.tdm
-    return db
+db = AIOEngine(client=client, database="tdm")
+
