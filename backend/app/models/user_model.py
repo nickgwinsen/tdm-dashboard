@@ -6,15 +6,17 @@ from odmantic import Field, Model
 PyObjectId = Annotated[str, BeforeValidator(str)]
 
 
-class UserCreate(BaseModel):
+class UsersCreate(BaseModel):
     email: EmailStr = Field(...)
     password: str = Field(...)
 
 
-class UserModel(Model):
+class UsersModel(Model):
     """
     A User record.
     """
 
     email: EmailStr = Field(...)
     hashed_password: str = Field(...)
+
+    model_config = {"collection": "users"}
