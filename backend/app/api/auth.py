@@ -27,7 +27,7 @@ async def auth_signup(user: UserIn):
         email=user.email, hashed_password=hash_password(user.password)
     )
 
-    db.save(user_to_add)
+    await db.save(user_to_add)
 
     return user_to_add.email
 
