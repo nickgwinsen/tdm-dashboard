@@ -16,7 +16,7 @@ ALGORITHM = "HS256"
 
 def create_access_token(
     subject: Union[str, Any], expires_delta: timedelta = None
-) -> str:
+) -> models.Token:
     """
     Create an access token for a user.
 
@@ -36,7 +36,8 @@ def create_access_token(
         )
     to_encode = {"exp": expire, "sub": str(subject)}
     encoded_jwt = jwt.encode(to_encode, variables.SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
+
+    return models.Token(access_token=encoded_jwt)
 
 
 def decode_access_token(token: str) -> models.Token:
