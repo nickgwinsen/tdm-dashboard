@@ -26,11 +26,6 @@ const NAVIGATION: Navigation = [
     icon: <SpeedDialIcon />,
   },
   {
-      segment: "",
-      title: "Dashboard",
-      icon: <DashboardIcon />,
-  },
-  {
       segment: "districts",
       title: "Districts",
       icon: <LocalConvenienceStoreIcon />,
