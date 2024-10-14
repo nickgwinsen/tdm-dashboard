@@ -66,6 +66,7 @@ export const DataTable = <TRow extends GridValidRowModel>({
     apiRef,
     sx,
     autoSize = false,
+    title,
     ...other
 }: IDataTableProps<TRow> &
     Omit<DataGridProps, "rows" | "columns" | "autosizeOnMount">) => {
@@ -150,40 +151,46 @@ export const DataTable = <TRow extends GridValidRowModel>({
     }, [handleAutoSize]);
 
     return (
-        <DataGrid
-            autoHeight
-            apiRef={baseApiRef}
-            rows={rows}
-            columns={columns}
-            disableRowSelectionOnClick
-            sx={{ ...tableStyles, ...sx }}
-            autosizeOnMount={autoSize}
-            autosizeOptions={autosizeOptions}
-            getRowHeight={() => "auto"}
-            slots={{
-                noRowsOverlay: NoRowsOverlay,
-                loadingOverlay: LinearProgress as GridSlots["loadingOverlay"],
-            }}
-            initialState={{
-                pagination: {
-                    paginationModel: {
-                        pageSize: 5,
-                    },
-                },
-            }}
-            pageSizeOptions={[5]}
-            slotProps={{
-                filterPanel: {
-                    filterFormProps: {
-                        operatorInputProps: {
-                            disabled: true,
-                            sx: { display: "none" },
+        <>
+            <Typography variant="h5" sx={{ mb: 2 }}>
+                {title}
+            </Typography>
+            <DataGrid
+                autoHeight
+                apiRef={baseApiRef}
+                rows={rows}
+                columns={columns}
+                disableRowSelectionOnClick
+                sx={{ ...tableStyles, ...sx }}
+                autosizeOnMount={autoSize}
+                autosizeOptions={autosizeOptions}
+                getRowHeight={() => "auto"}
+                slots={{
+                    noRowsOverlay: NoRowsOverlay,
+                    loadingOverlay:
+                        LinearProgress as GridSlots["loadingOverlay"],
+                }}
+                initialState={{
+                    pagination: {
+                        paginationModel: {
+                            pageSize: 5,
                         },
                     },
-                },
-            }}
-            {...other}
-        />
+                }}
+                pageSizeOptions={[5]}
+                slotProps={{
+                    filterPanel: {
+                        filterFormProps: {
+                            operatorInputProps: {
+                                disabled: true,
+                                sx: { display: "none" },
+                            },
+                        },
+                    },
+                }}
+                {...other}
+            />
+        </>
     );
 };
 export default DataTable;

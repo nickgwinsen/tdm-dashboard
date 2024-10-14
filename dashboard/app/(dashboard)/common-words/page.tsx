@@ -41,6 +41,7 @@ export default function CommonWords() {
     return (
         <>
             <Table
+                title="Test title"
                 rows={rows}
                 columns={columns}
                 autoSize
