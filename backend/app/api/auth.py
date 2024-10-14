@@ -1,9 +1,7 @@
 from fastapi import APIRouter, Depends
 from fastapi.encoders import jsonable_encoder
-from sqlalchemy import text, select
-from sqlalchemy.orm import Session
 
-from app.db.session import SessionDep, get_session
+from app.db.session
 from app.etc.crypt import hash_password
 from app.models.user_model import *
 from app.schemas.user_schema import UserIn, UserOut
