@@ -5,8 +5,6 @@ from odmantic import AIOEngine
 uri = variables.MONGO_URI
 
 
-
 client = AsyncIOMotorClient(uri)
 
 db = AIOEngine(client=client, database="tdm")
-
