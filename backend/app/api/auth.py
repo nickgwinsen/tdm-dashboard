@@ -11,11 +11,14 @@ from app.db.session import db
 
 
 @router.post("/login")
-async def auth_login(user: UserIn):
-    # user_hash = hash_password(user.password)
-    # user_to_verify = select(Users).where(Users.email == user.email)
-    # result = db.exec(user_to_verify).scalars().all()
-    print(db.__getstate__())
+async def auth_login(user: models.UsersCreate):
+    user_to_verify = await db.find_one(
+        models.UsersModel, models.UsersModel.email == user.email
+    )
+    print(user_to_verify)
+    verified = verify_password(user.password, user_to_verify.hashed_password)
+    if not verified:
+        raise HTTPException(status_code=400, detail="Incorrect password")
 
 
 @router.post("/signup", response_model=models.Token)
