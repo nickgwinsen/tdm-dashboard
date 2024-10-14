@@ -6,11 +6,9 @@ load_dotenv()
 
 
 class Variables:
-    API_KEY = os.getenv("API_KEY")
-    DB_STRING = os.getenv("POSTGRES_STRING")
-    SECRET_KEY = os.getenv("SECRET_KEY")
-    ALEMBIC_PATH = os.getenv("ALEMBIC_PATH")
     MONGO_URI = os.getenv("MONGO_URI")
+    ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))
+    SECRET_KEY = os.getenv("SECRET_KEY")
 
 
 variables = Variables()

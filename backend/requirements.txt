@@ -6,7 +6,6 @@ charset-normalizer==3.3.2
 click==8.1.7
 colorama==0.4.6
 configparser==7.1.0
-dnspython==2.6.1
 email_validator==2.2.0
 exceptiongroup==1.2.2
 fastapi==0.114.2
@@ -46,3 +45,4 @@ websockets==13.0.1
 motor==3.6.0
 odmantic==1.0.2
 dnspython==2.7.0
+python-jose[cryptography]==3.3.0
