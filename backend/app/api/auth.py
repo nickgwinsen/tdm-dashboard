@@ -18,6 +18,7 @@ async def auth_login(user: schemas.UsersCreate):
     verified = crypt.verify_password(user.password, user_to_verify.hashed_password)
     if not verified:
         raise HTTPException(status_code=400, detail="Incorrect password")
+    return crypt.create_access_token(user.email)
 
 
 @router.post("/signup", response_model=models.Token)
@@ -32,6 +33,8 @@ async def auth_signup(user: schemas.UsersCreate):
     await db.save(user_to_add)
 
     return crypt.create_access_token(user.email)
+    # store the token in the localstorage on frontend when you login
+    # then it will be in the headers when request is made
 
 
 #
