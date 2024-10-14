@@ -1,9 +1,7 @@
 from fastapi import APIRouter, HTTPException
-from fastapi.encoders import jsonable_encoder
-
 from app.etc import crypt
 from app import models
-from app.schemas.user_schema import UserIn, UserOut
+
 
 router = APIRouter()
 
@@ -16,13 +14,13 @@ async def auth_login(user: models.UsersCreate):
         models.UsersModel, models.UsersModel.email == user.email
     )
     print(user_to_verify)
-    verified = verify_password(user.password, user_to_verify.hashed_password)
+    verified = crypt.verify_password(user.password, user_to_verify.hashed_password)
     if not verified:
         raise HTTPException(status_code=400, detail="Incorrect password")
 
 
 @router.post("/signup", response_model=models.Token)
-async def auth_signup(user: UserIn):
+async def auth_signup(user: models.UsersCreate):
     if await db.find_one(models.UserModel, models.UserModel.email == user.email):
         raise HTTPException(status_code=400, detail="Email already exists")
 
