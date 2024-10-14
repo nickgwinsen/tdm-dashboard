@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import { GridColDef, GridToolbarContainer } from '@mui/x-data-grid';
 import Table from '../../components/Table';
-import tableStyles from '../../components/Table';
 
 // this does NOT get anything from the actual data, since it really isnt availlable and we dont have filtering
 
