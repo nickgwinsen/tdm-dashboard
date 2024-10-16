@@ -1,7 +1,8 @@
-import BusinessActions from "./_components/Business-Actions/BusinessActions";
-import CommonWords from "./_components/common-words/CommonWords";
-import App from "./_components/dropdown/DistrictDropdown";
-import StarRatings from "./_components/star-ratings/StarRatings";
+import BusinessActions from "./components/Business-Actions/BusinessActions";
+import CommonWords from "./components/common-words/CommonWords";
+import App from "./components/dropdown/DistrictDropdown";
+import StarRatings from "./components/star-ratings/StarRatings";
+import CategoryRatings from "./components/categoryRatings/CategoryRatings";
 import { Grid2, Box } from "@mui/material";
 
 export default function Districts() {
@@ -19,6 +20,9 @@ export default function Districts() {
                     </Grid2>
                     <Grid2>
                         <StarRatings />
+                    </Grid2>
+                    <Grid2 size={12}>
+                        <CategoryRatings />
                     </Grid2>
                 </Grid2>
             </Box>
