@@ -9,6 +9,7 @@ import { AppProvider } from "@toolpad/core/nextjs";
 import * as React from "react";
 
 import theme from "../theme";
+import { SpeedDialIcon } from "@mui/material";
 
 const NAVIGATION: Navigation = [
     {
