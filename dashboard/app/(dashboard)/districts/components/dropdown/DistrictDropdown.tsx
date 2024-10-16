@@ -1,9 +1,9 @@
 "use client";
-import * as React from "react";
+import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import * as React from "react";
 
 // Reusable SelectDistrict component
 function DistrictDropdown({
@@ -18,7 +18,7 @@ function DistrictDropdown({
     onChange: (event: SelectChangeEvent) => void;
 }) {
     return (
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+        <FormControl sx={{ minWidth: 120, mb: 2 }} size="small">
             <InputLabel id="select-district-label">{label}</InputLabel>
             <Select
                 labelId="select-district-label"
