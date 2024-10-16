@@ -4,12 +4,13 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import LocalConvenienceStoreIcon from "@mui/icons-material/LocalConvenienceStore";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-import type { Navigation } from "@toolpad/core";
+import type { Branding, Navigation } from "@toolpad/core";
 import { AppProvider } from "@toolpad/core/nextjs";
 import * as React from "react";
 
 import { SpeedDialIcon } from "@mui/material";
-import theme from "../theme";
+import Image from "next/image";
+import theme from "../config/theme";
 
 const NAVIGATION: Navigation = [
     {
@@ -48,8 +49,11 @@ const NAVIGATION: Navigation = [
     },
 ];
 
-const BRANDING = {
+const BRANDING: Branding = {
     title: "Travel Centers of America Dashboard",
+    logo: (
+        <Image src="/images/ta-logo.svg" width={100} height={100} alt="logo" />
+    ),
 };
 
 export default function RootLayout(props: { children: React.ReactNode }) {
