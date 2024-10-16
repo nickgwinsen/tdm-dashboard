@@ -1,4 +1,3 @@
-import DashboardIcon from "@mui/icons-material/Dashboard";
 import LocalConvenienceStoreIcon from "@mui/icons-material/LocalConvenienceStore";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import type { Branding, Navigation } from "@toolpad/core";
@@ -11,13 +10,9 @@ import theme from "../config/theme";
 const NAVIGATION: Navigation = [
     {
         kind: "header",
-        title: "Main items",
+        title: "Travel Centers",
     },
-    {
-        segment: "",
-        title: "Dashboard",
-        icon: <DashboardIcon />,
-    },
+
     {
         segment: "districts",
         title: "Districts",
