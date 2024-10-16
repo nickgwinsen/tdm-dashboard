@@ -1,0 +1,8 @@
+{
+    "Food":["food"],
+    "Service":["cashier", "waiter", "manager"],
+    "Bathrooms":["shower", "bathroom", "toilet"],
+    "Parking":["parking"],
+    "Cleanliness":["clean", "dirty", "floor"],
+    "Truck Maintanence":["mechanic"]
+}

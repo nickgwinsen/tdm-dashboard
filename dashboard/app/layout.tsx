@@ -8,33 +8,39 @@ import type { Navigation } from "@toolpad/core";
 import { AppProvider } from "@toolpad/core/nextjs";
 import * as React from "react";
 
-import theme from "../theme";
+import theme from '../theme';
+import { SpeedDialIcon } from '@mui/material';
 
 const NAVIGATION: Navigation = [
-    {
-        kind: "header",
-        title: "Main items",
-    },
-    {
-        segment: "",
-        title: "Dashboard",
-        icon: <DashboardIcon />,
-    },
-    {
-        segment: "districts",
-        title: "Districts",
-        icon: <LocalConvenienceStoreIcon />,
-    },
-    {
-        segment: "common-words",
-        title: "Most Common Words",
-        icon: <AbcIcon />,
-    },
-    {
-        segment: "star-ratings",
-        title: "Star Ratings",
-        icon: <StarBorderIcon />,
-    },
+  {
+    kind: 'header',
+    title: 'Main items',
+  },
+  {
+    segment: '',
+    title: 'Dashboard',
+    icon: <DashboardIcon />,
+  },
+  {
+    segment: 'categoryRatings',
+    title: 'Ratings By Category',
+    icon: <SpeedDialIcon />,
+  },
+  {
+      segment: "districts",
+      title: "Districts",
+      icon: <LocalConvenienceStoreIcon />,
+  },
+  {
+      segment: "common-words",
+      title: "Most Common Words",
+      icon: <AbcIcon />,
+  },
+  {
+      segment: "star-ratings",
+      title: "Star Ratings",
+      icon: <StarBorderIcon />,
+  },
     {
         segment: "Business-Actions",
         title: "Business Actions",
