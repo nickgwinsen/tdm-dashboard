@@ -14,7 +14,6 @@ async def auth_login(user: schemas.UsersCreate):
     user_to_verify = await db.find_one(
         models.UsersModel, models.UsersModel.email == user.email
     )
-    print(user_to_verify)
     verified = crypt.verify_password(user.password, user_to_verify.hashed_password)
     if not verified:
         raise HTTPException(status_code=400, detail="Incorrect password")
