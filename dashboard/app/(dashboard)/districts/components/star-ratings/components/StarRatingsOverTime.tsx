@@ -45,7 +45,9 @@ export const StarRatingsOverTime = () => {
     const theme = useTheme();
     return (
         <StarRatingsPaper>
-            <Typography variant={"h6"}>Star Ratings Over Time</Typography>
+            <Typography variant={"h6"}>
+                Average Star Rating Over Time
+            </Typography>
             <LineChart
                 height={400}
                 dataset={averages}
