@@ -1,14 +1,17 @@
 "use client";
 import { Typography } from "@mui/material";
-import { BarChart } from "@mui/x-charts/BarChart";
+import { LineChart } from "@mui/x-charts/LineChart";
 import { axisClasses } from "@mui/x-charts/ChartsAxis";
 import { dataset, valueFormatter } from "./dataset/reviews";
 import { StarRatingsPaper } from "./StarRatingsPaper";
+import { useTheme } from "@mui/material/styles";
 
 const chartSetting = {
     yAxis: [
         {
-            label: "# of Reviews",
+            label: "Average Star Rating",
+            min: 0,
+            max: 5,
         },
     ],
     sx: {
@@ -19,31 +22,40 @@ const chartSetting = {
     },
 };
 
+// calculating average for each month and storing in averages array
+// this will likely change when api is connected since we will be grabbing
+// reviews instead of number of star ratings.
+const averages = dataset.map((month) => {
+    const total = month.one + month.two + month.three + month.four + month.five;
+    const average =
+        (month.one * 1 +
+            month.two * 2 +
+            month.three * 3 +
+            month.four * 4 +
+            month.five * 5) /
+        total;
+    return {
+        average: average,
+        month: month.month,
+    };
+});
+
 export const StarRatingsOverTime = () => {
+    // imports theme so the line graph can use primary color
+    const theme = useTheme();
     return (
         <StarRatingsPaper>
             <Typography variant={"h6"}>Star Ratings Over Time</Typography>
-            <BarChart
+            <LineChart
                 height={400}
-                dataset={dataset}
-                xAxis={[{ scaleType: "band", dataKey: "month" }]}
+                dataset={averages}
+                xAxis={[{ scaleType: "point", dataKey: "month" }]}
                 series={[
-                    { dataKey: "one", label: "One Stars", valueFormatter },
-                    { dataKey: "two", label: "Two Stars", valueFormatter },
                     {
-                        dataKey: "three",
-                        label: "Three Stars",
+                        dataKey: "average",
+                        label: "Average",
                         valueFormatter,
-                    },
-                    {
-                        dataKey: "four",
-                        label: "Four Stars",
-                        valueFormatter,
-                    },
-                    {
-                        dataKey: "five",
-                        label: "Five Stars",
-                        valueFormatter,
+                        color: theme.palette.primary.main,
                     },
                 ]}
                 {...chartSetting}
