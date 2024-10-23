@@ -47,4 +47,5 @@ This [Next.js](https://nextjs.org) and [FastAPI](https://fastapi.tiangolo.com) p
 
 ### Getting Started
 
-1.
+1. Change directory to tdm-dashboard > backend
+2. Run the development server with `fastapi dev app/main`
