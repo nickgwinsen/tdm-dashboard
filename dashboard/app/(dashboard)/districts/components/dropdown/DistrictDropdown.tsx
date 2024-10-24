@@ -1,9 +1,11 @@
 "use client";
+import { Stack } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import * as React from "react";
+import CategoryDropDown from "./CategoryDropdown";
 
 // Reusable SelectDistrict component
 function DistrictDropdown({
@@ -84,11 +86,15 @@ export default function App() {
     ];
 
     return (
-        <DistrictDropdown
+        <Stack direction="row" spacing={1}>
+            <DistrictDropdown
             districts={districtList}
+            
             label="District"
             value={selectedDistrict}
             onChange={handleDistrictChange}
-        />
+            />
+            <CategoryDropDown/>
+        </Stack>
     );
 }

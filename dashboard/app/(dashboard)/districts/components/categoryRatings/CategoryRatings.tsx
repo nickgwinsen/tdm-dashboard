@@ -1,19 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { Box, Paper } from "@mui/material";
-import { GridColDef } from "@mui/x-data-grid";
-import Table from "../../../../components/Table";
+import { Box, Container, Paper, Rating, Table, TableCell, TableRow, Typography } from "@mui/material";
 
 // this does NOT get anything from the actual data, since it really isnt availlable and we dont have filtering
 
 // let columns: GridColDef<(typeof rows)[number]>[] = [];
 
-let rows: any[] = [];
-
 import categoriesJSON from "./categories.json";
 
-const categories = Object.entries(categoriesJSON);
 // get the categories json
 
 // for (var num = 0; num < categories.length; num++) {
@@ -30,40 +25,40 @@ const categories = Object.entries(categoriesJSON);
 //     }
 // }
 
-const columns = [
-    { field: "Food", headerName: "Food", flex: 1 },
-    { field: "Service", headerName: "Service", flex: 1 },
-    { field: "Bathrooms", headerName: "Bathrooms", flex: 1 },
-    { field: "Cleanliness", headerName: "Cleanliness", flex: 1 },
-    { field: "Parking", headerName: "Parking", flex: 1 },
-    { field: "TruckMaintenance", headerName: "Truck Maintenance", flex: 1 },
-];
+const ratings: {category:string; rating:number; amount:number;}[] = [];
 
-rows.push({
-    id: 0,
-    Food: 1.0,
-    Service: 2.0,
-    Bathrooms: 2.5,
-    Cleanliness: 5.0,
-    Parking: "N/A",
-    TruckMaintenance: 3.6,
-});
+var rating = 0;
+
+for (var category in categoriesJSON){
+    ratings.push({category:category, rating:rating, amount:100 * rating});
+
+    rating += .5;
+}
 
 export default function CategoryPage() {
     return (
         <Paper variant="outlined" sx={{ p: 2, height: "100%" }}>
-            <Box style={{ width: "auto" }}>
-                <Table
-                    title="Ratings By Category"
-                    rows={rows}
-                    columns={columns}
-                    autoSize
-                    disableColumnMenu
-                    hideFooter
-                    disableColumnSorting
-                    disableColumnResize
-                />
-            </Box>
+            <Typography variant={"h6"}>Ratings By Category</Typography>
+            <Table width="100%" cellSpacing={0}>
+                {ratings.map(({category, rating, amount}) =>
+                    <TableRow>
+                        <TableCell>
+                            <Typography align="left" fontWeight={"bold"} >{category}</Typography>
+                        </TableCell>
+                        <TableCell>
+                            <Rating
+                                    name="read-only"
+                                    value={rating}
+                                    readOnly
+                                    precision={0.25}
+                                    />
+                        </TableCell>
+                        <TableCell sx={{width:"60%"}}>
+                            <Typography align="right" fontWeight={"bold"}>{amount} Reviews</Typography>
+                        </TableCell>  
+                    </TableRow>
+                )}
+            </Table>
         </Paper>
     );
 }
