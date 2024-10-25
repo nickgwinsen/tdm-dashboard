@@ -1,6 +1,6 @@
 from typing import List
 from datetime import datetime
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 from app import models
 from app.db.session import db
 
@@ -26,11 +26,22 @@ async def get_reviews_date_range(
             end_date = datetime.strptime(end_date, "%Y-%m-%d %I:%M %p")
     except ValueError as e:
         raise HTTPException(status_code=400, detail=f"Invalid date format: {e}")
-    reviews = await db.find(
-        models.ReviewData,
-        (models.ReviewData.ReviewDate > begin_date)
-        & (models.ReviewData.ReviewDate < end_date),
-    )
+    if begin_date and end_date:
+        reviews = await db.find(
+            models.ReviewData,
+            (models.ReviewData.ReviewDate > begin_date)
+            & (models.ReviewData.ReviewDate < end_date),
+        )
+    elif begin_date:
+        reviews = await db.find(
+            models.ReviewData, (models.ReviewData.ReviewDate > begin_date)
+        )
+    elif end_date:
+        reviews = await db.find(
+            models.ReviewData, (models.ReviewData.ReviewDate < end_date)
+        )
+    else:
+        reviews = await db.find(models.ReviewData)
     if not reviews:
         raise HTTPException(status_code=404, detail="No reviews found")
     return reviews
