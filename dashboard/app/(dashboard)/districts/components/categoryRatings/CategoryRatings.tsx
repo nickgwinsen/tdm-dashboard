@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Paper, Rating, Typography } from "@mui/material";
+import { Paper, Rating, Stack, Typography } from "@mui/material";
 
 // this does NOT get anything from the actual data, since it really isnt availlable and we dont have filtering
 
@@ -26,7 +26,10 @@ export function renderRating(params: GridRenderCellParams<any, number, any>) {
       return '';
     }
   
-    return <Rating value={params.value} readOnly precision={.1}/>;
+    return <Stack direction={"row"} spacing={1}>
+            <Typography fontWeight={'bold'}>{params.value.toPrecision(3)}</Typography>
+            <Rating value={params.value} readOnly precision={.1}/>
+        </Stack>;
 }
 
 const columns: GridColDef<(typeof ratings)[number]>[] = [
