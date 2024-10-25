@@ -101,7 +101,7 @@ export const reviews = [
 ];
 
 export function valueFormatter(value: number | null) {
-    return `${value?.toFixed(2)}`;
+    return `${value} Reviews`;
 }
 
 export function getAverageRating() {
