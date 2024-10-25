@@ -7,17 +7,11 @@ from app.db.session import db
 router = APIRouter()
 
 
-@router.get("/reviews/all", response_model=List[models.ReviewData])
-async def get_all_reviews():
-    reviews = await db.find(models.ReviewData)
-    if not reviews:
-        raise HTTPException(status_code=400, detail="Bad request")
-    return reviews
-
-
-@router.get("/reviews/")
-async def get_reviews_date_range(
-    begin_date: str | None = None, end_date: str | None = None
+@router.get("/reviews")
+async def get_reviews(
+    begin_date: str | None = None,
+    end_date: str | None = None,
+    district_id: int | None = None,
 ):
     try:
         if begin_date:
@@ -26,19 +20,28 @@ async def get_reviews_date_range(
             end_date = datetime.strptime(end_date, "%Y-%m-%d %I:%M %p")
     except ValueError as e:
         raise HTTPException(status_code=400, detail=f"Invalid date format: {e}")
-    if begin_date and end_date:
+    if begin_date and end_date and district_id:
         reviews = await db.find(
             models.ReviewData,
             (models.ReviewData.ReviewDate > begin_date)
-            & (models.ReviewData.ReviewDate < end_date),
+            & (models.ReviewData.ReviewDate < end_date)
+            & (models.ReviewData.District == district_id),
         )
-    elif begin_date:
+    elif begin_date and district_id:
         reviews = await db.find(
-            models.ReviewData, (models.ReviewData.ReviewDate > begin_date)
+            models.ReviewData,
+            (models.ReviewData.ReviewDate > begin_date)
+            & (models.ReviewData.District == district_id),
         )
-    elif end_date:
+    elif end_date and district_id:
         reviews = await db.find(
-            models.ReviewData, (models.ReviewData.ReviewDate < end_date)
+            models.ReviewData,
+            (models.ReviewData.ReviewDate < end_date)
+            & (models.ReviewData.District == district_id),
+        )
+    elif district_id:
+        reviews = await db.find(
+            models.ReviewData, (models.ReviewData.District == district_id)
         )
     else:
         reviews = await db.find(models.ReviewData)
