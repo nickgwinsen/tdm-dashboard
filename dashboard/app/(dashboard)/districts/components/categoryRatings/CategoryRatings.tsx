@@ -1,64 +1,72 @@
 "use client";
 
 import * as React from "react";
-import { Box, Container, Paper, Rating, Table, TableCell, TableRow, Typography } from "@mui/material";
+import { Paper, Rating, Typography } from "@mui/material";
 
 // this does NOT get anything from the actual data, since it really isnt availlable and we dont have filtering
 
-// let columns: GridColDef<(typeof rows)[number]>[] = [];
-
 import categoriesJSON from "./categories.json";
+import DataTable from "@/app/components/Table";
+import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 
-// get the categories json
+const ratings: {id: number, category:string; rating:number; reviews:number;}[] = [];
 
-// for (var num = 0; num < categories.length; num++) {
-//     var category = categories[num][0];
-
-//     console.log(category);
-//     if (category == "Truck Maintenance") {
-//         columns.push({
-//             field: "TruckMaintenance",
-//             headerName: "Truck Maintenance",
-//         });
-//     } else {
-//         columns.push({ field: category, headerName: category });
-//     }
-// }
-
-const ratings: {category:string; rating:number; amount:number;}[] = [];
-
-var rating = 0;
+var rating = 1;
+var id = 0;
 
 for (var category in categoriesJSON){
-    ratings.push({category:category, rating:rating, amount:100 * rating});
+    ratings.push({id: id, category:category, rating:rating, reviews:100 * rating});
 
     rating += .5;
+    id++;
 }
+
+export function renderRating(params: GridRenderCellParams<any, number, any>) {
+    if (params.value == null) {
+      return '';
+    }
+  
+    return <Rating value={params.value} readOnly precision={.1}/>;
+}
+
+const columns: GridColDef<(typeof ratings)[number]>[] = [
+    {
+        field: 'category',
+        headerName: 'Category',
+    },
+    {
+        field: 'rating',
+        headerName: 'Rating',
+        align:"left",
+        renderCell: renderRating,
+        flex:1,
+    },
+    {
+        field: 'reviews',
+        headerName: 'Reviews',
+        editable: false,
+    }
+];
+
+const autoSizeOptions = {
+    columns: columns.map((c) => {
+        return c.field;
+    }),
+    expand: true,
+    includeHeaders: true,
+    includeOutliers: true,
+};
 
 export default function CategoryPage() {
     return (
         <Paper variant="outlined" sx={{ p: 2, height: "100%" }}>
             <Typography variant={"h6"}>Ratings By Category</Typography>
-            <Table width="100%" cellSpacing={0}>
-                {ratings.map(({category, rating, amount}) =>
-                    <TableRow>
-                        <TableCell>
-                            <Typography align="left" fontWeight={"bold"} >{category}</Typography>
-                        </TableCell>
-                        <TableCell>
-                            <Rating
-                                    name="read-only"
-                                    value={rating}
-                                    readOnly
-                                    precision={0.25}
-                                    />
-                        </TableCell>
-                        <TableCell sx={{width:"60%"}}>
-                            <Typography align="right" fontWeight={"bold"}>{amount} Reviews</Typography>
-                        </TableCell>  
-                    </TableRow>
-                )}
-            </Table>
+            <DataTable 
+                columns={columns}
+                rows = {ratings}
+                autoSize
+                autosizeOptions={autoSizeOptions}
+                />
         </Paper>
     );
 }
