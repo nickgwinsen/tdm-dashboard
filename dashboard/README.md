@@ -60,3 +60,4 @@ This [Next.js](https://nextjs.org) and [FastAPI](https://fastapi.tiangolo.com) p
 -   [Python](https://www.python.org) the language used for our back end.
 -   [FastAPI](https://fastapi.tiangolo.com) our python framework for the back end.
 -   [Swagger UI](https://swagger.io/tools/swagger-ui/) used to test our API endpoints.
+-   [MongoDB](https://www.mongodb.com) the database used to store our data.
