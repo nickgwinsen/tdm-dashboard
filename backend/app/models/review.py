@@ -19,10 +19,10 @@ class ReviewData(Model):
     Address: Address
     AuthorName: str = Field(...)
     Review: str
-    ReviewDate: str = Field(...)
+    ReviewDate: datetime = Field(...)
     Rating: int
     Site: str = Field(...)
     URL: str = Field(...)
-    District: str = Field(...)
+    District: int = Field(...)
 
     model_config = {"collection": "ReviewData"}

@@ -2,7 +2,7 @@ import logging
 
 from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import auth
+from app.api import auth, reviews
 from app.services.dump_to_db import dump_to_mongo
 
 log = logging.getLogger("uvicorn")
@@ -21,10 +21,11 @@ app.add_middleware(
 )
 
 
-@app.get("/dump")
-async def loaddb():
-    await dump_to_mongo()
-    return "check the db."
+# @app.get("/dump")
+# async def loaddb():
+#     await dump_to_mongo()
+#     return "complete"
 
 
 app.include_router(auth.router)
+app.include_router(reviews.router)
