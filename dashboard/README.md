@@ -47,6 +47,7 @@ This [Next.js](https://nextjs.org) and [FastAPI](https://fastapi.tiangolo.com) p
 
 1. Since our back end is built with FastAPI, you will need to install [Python](https://www.python.org/downloads/) to your local machine.
 2. Change directory to tdm-dashboard > backend and enter the command `pip install -r requirements.txt`
+3. You will also need to add a file to tdm-dashboard > backend with the name `.env`. Here is stored all of the secrets that are used to connect to the database. You may need to ask Dr. Kerns where to find the values to insert into this file.
 
 ### BE Getting Started
 
