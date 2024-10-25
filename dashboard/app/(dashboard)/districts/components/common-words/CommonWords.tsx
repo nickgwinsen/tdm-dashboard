@@ -1,5 +1,6 @@
 "use client";
-import Table from "../../components/Table";
+import { Paper } from "@mui/material";
+import Table from "../../../../components/Table";
 
 var i = 0;
 
@@ -14,7 +15,7 @@ function createData(word: string, appearances: number) {
 }
 
 const columns = [
-    { field: "word", headerName: "Word", flex: 1 },
+    { field: "word", headerName: "Word" },
     { field: "appearances", headerName: "Appearances", flex: 1 },
 ];
 
@@ -40,13 +41,18 @@ const rows = [
 export default function CommonWords() {
     return (
         <>
-            <Table
-                title="Most Common Words"
-                rows={rows}
-                columns={columns}
-                autoSize
-                autosizeOptions={autoSizeOptions}
-            />
+            <Paper
+                variant="outlined"
+                sx={{ p: 2, height: "100%", minHeight: 450 }}
+            >
+                <Table
+                    title="Most Common Words"
+                    rows={rows}
+                    columns={columns}
+                    autoSize
+                    autosizeOptions={autoSizeOptions}
+                />
+            </Paper>
         </>
     );
 }

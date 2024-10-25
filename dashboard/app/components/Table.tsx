@@ -152,7 +152,7 @@ export const DataTable = <TRow extends GridValidRowModel>({
 
     return (
         <>
-            <Typography variant="h5" sx={{ mb: 2 }}>
+            <Typography variant="h6" sx={{ mb: 2 }}>
                 {title}
             </Typography>
             <DataGrid
